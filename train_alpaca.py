@@ -196,11 +196,11 @@ trainer = Trainer(
         torch_compile=True, # optimizations
         optim="adamw_torch_fused", # improved optimizer
         # push to hub parameters
-        report_to='wandb',
-        push_to_hub=True,
-        hub_strategy="every_save",
-        hub_model_id=repository_id,
-        hub_token=HfFolder.get_token(),
+        report_to='tensorboard',
+        push_to_hub=False
+#         hub_strategy="every_save",
+#         hub_model_id=repository_id,
+#         hub_token=HfFolder.get_token(),
     ),
     data_collator=transformers.DataCollatorForLanguageModeling(tokenizer, mlm=False),
 )
