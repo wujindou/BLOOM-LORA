@@ -33,8 +33,9 @@ LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
 VAL_SET_SIZE = 2000
 TARGET_MODULES = [
-    "q_proj",
-    "v_proj",
+    "query_key_value"
+#     "q_proj",
+#     "v_proj",
 ]
 DATA_PATH = "data/alpaca_data_cleaned.json"
 
@@ -57,7 +58,7 @@ model = prepare_model_for_int8_training(model)
 config = LoraConfig(
     r=LORA_R,
     lora_alpha=LORA_ALPHA,
-    target_modules=TARGET_MODULES,
+#     target_modules=TARGET_MODULES,
     lora_dropout=LORA_DROPOUT,
     bias="none",
     task_type="CAUSAL_LM",
