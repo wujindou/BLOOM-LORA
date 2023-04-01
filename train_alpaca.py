@@ -35,7 +35,7 @@ LORA_R = 8
 LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
 VAL_SET_SIZE = 2000
-DATA_PATH = "alpaca_data_cleaned.json"
+DATA_PATH = "data/alpaca_data_cleaned.json"
 OUTPUT_DIR = "BLOOM-alpaca"
 
 ## Choose a model to finetune 
