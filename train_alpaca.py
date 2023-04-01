@@ -194,7 +194,7 @@ trainer = Trainer(
         load_best_model_at_end=True if VAL_SET_SIZE > 0 else False,
         ddp_find_unused_parameters=False if ddp else None,
         torch_compile=True, # optimizations
-        optim="adamw_torch_fused", # improved optimizer
+        optim="adamw_torch", # improved optimizer
         # push to hub parameters
         report_to='tensorboard',
         push_to_hub=False
