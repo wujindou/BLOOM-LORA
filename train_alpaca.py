@@ -216,7 +216,9 @@ if torch.__version__ >= "2" and sys.platform != 'win32':
 
 # If you want to resume a training phase, please choose 'True'
 # Else choose 'False'
-trainer.train(resume_from_checkpoint = False) 
+trainer.train() 
+
+# trainer.train(resume_from_checkpoint = False) 
 
 model.save_pretrained(OUTPUT_DIR)
 
