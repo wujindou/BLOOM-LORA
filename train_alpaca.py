@@ -16,12 +16,12 @@ from peft import (
     get_peft_model_state_dict,
 )
 
-from huggingface_hub import login, HfFolder
+# from huggingface_hub import login, HfFolder
 
-login(
-  token="", # ADD YOUR TOKEN HERE
-  add_to_git_credential=True
-)
+# login(
+#   token="", # ADD YOUR TOKEN HERE
+#   add_to_git_credential=True
+# )
 
 
 # optimized for RTX 3090 and A100. For larger GPUs, increase some of these?
