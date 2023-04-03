@@ -22,8 +22,8 @@ from peft import (
 
 
 # optimized for RTX 3090 and A100. for larger GPUs, increase some of these?
-MICRO_BATCH_SIZE = 4  # this could actually be 5 but i like powers of 2
-BATCH_SIZE = 32
+MICRO_BATCH_SIZE = 8  # this could actually be 5 but i like powers of 2
+BATCH_SIZE = 64
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
 EPOCHS = 3  # we don't always need 3 tbh
 LEARNING_RATE = 3e-4  # the Karpathy constant
@@ -39,8 +39,8 @@ TARGET_MODULES = [
 ]
 DATA_PATH = "data/kesi_data.json"
 
-# model_name = "bigscience/bloom-560m"
-model_name = "bigscience/bloom-1b1"
+model_name = "bigscience/bloom-560m"
+# model_name = "bigscience/bloom-1b1"
 #model_name = "bigscience/bloom-1b7"
 #model_name = "bigscience/bloom-3b"
 #model_name = "bigscience/bloom-7b1"
