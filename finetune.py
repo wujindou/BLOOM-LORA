@@ -27,17 +27,17 @@ BATCH_SIZE = 32
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
 EPOCHS = 3  # we don't always need 3 tbh
 LEARNING_RATE = 3e-4  # the Karpathy constant
-CUTOFF_LEN = 256  # 256 accounts for about 96% of the data
+CUTOFF_LEN = 512  # 256 accounts for about 96% of the data
 LORA_R = 8
 LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
-VAL_SET_SIZE = 100
+VAL_SET_SIZE = 1000
 TARGET_MODULES = [
     "query_key_value"
 #     "q_proj",
 #     "v_proj",
 ]
-DATA_PATH = "data/alpaca_data_1k.json"
+DATA_PATH = "data/kesi_data.json"
 
 # model_name = "bigscience/bloom-560m"
 model_name = "bigscience/bloom-1b1"
