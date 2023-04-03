@@ -23,7 +23,7 @@ from peft import (
 
 # optimized for RTX 3090 and A100. for larger GPUs, increase some of these?
 MICRO_BATCH_SIZE = 4  # this could actually be 5 but i like powers of 2
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
 EPOCHS = 3  # we don't always need 3 tbh
 LEARNING_RATE = 3e-4  # the Karpathy constant
@@ -31,16 +31,16 @@ CUTOFF_LEN = 256  # 256 accounts for about 96% of the data
 LORA_R = 8
 LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
-VAL_SET_SIZE = 2000
+VAL_SET_SIZE = 100
 TARGET_MODULES = [
     "query_key_value"
 #     "q_proj",
 #     "v_proj",
 ]
-DATA_PATH = "data/alpaca_data_cleaned.json"
+DATA_PATH = "data/alpaca_data_1k.json"
 
-model_name = "bigscience/bloom-560m"
-#model_name = "bigscience/bloom-1b1"
+# model_name = "bigscience/bloom-560m"
+model_name = "bigscience/bloom-1b1"
 #model_name = "bigscience/bloom-1b7"
 #model_name = "bigscience/bloom-3b"
 #model_name = "bigscience/bloom-7b1"
