@@ -70,8 +70,8 @@ data = load_dataset("json", data_files=DATA_PATH)
 train_val = data["train"].train_test_split(
     test_size=VAL_SET_SIZE, shuffle=True, seed=42
 )
-train_data = train_val["train"]
-val_data = train_val["test"]
+train_data = train_val["train"][:1000]
+val_data = train_val["test"][:100]
 
 
 def generate_prompt(data_point):
