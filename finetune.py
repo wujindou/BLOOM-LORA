@@ -22,7 +22,7 @@ from peft import (
 
 
 # optimized for RTX 3090 and A100. for larger GPUs, increase some of these?
-MICRO_BATCH_SIZE = 8  # this could actually be 5 but i like powers of 2
+MICRO_BATCH_SIZE = 4  # this could actually be 5 but i like powers of 2
 BATCH_SIZE = 32
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
 EPOCHS = 1  # we don't always need 3 tbh
@@ -181,11 +181,11 @@ trainer = transformers.Trainer(
         num_train_epochs=EPOCHS,
         learning_rate=LEARNING_RATE,
         fp16=True,
-        logging_steps=20,
+        logging_steps=500,
         evaluation_strategy="steps",
         save_strategy="steps",
-        eval_steps=200,
-        save_steps=200,
+        eval_steps=1000,
+        save_steps=1000,
         output_dir="BLOOM-alpaca",
         save_total_limit=3,
         load_best_model_at_end=True,
