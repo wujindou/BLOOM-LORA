@@ -37,7 +37,7 @@ TARGET_MODULES = [
 #     "q_proj",
 #     "v_proj",
 ]
-DATA_PATH = "data/kesai_data.json"
+DATA_PATH = "data/kesi_data.json"
 
 model_name = "bigscience/bloom-560m"
 # model_name = "bigscience/bloom-1b1"
