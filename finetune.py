@@ -49,7 +49,7 @@ model_name = "bigscience/bloom-560m"
 model = BloomForCausalLM.from_pretrained( 
     model_name,
     device_map='auto',
-    load_in_8bit=True,
+#     load_in_8bit=True,
 )
 tokenizer = AutoTokenizer.from_pretrained('bigscience/bloom')
 
