@@ -8,7 +8,7 @@ from transformers.models.opt.modeling_opt import OPTDecoderLayer
 
 tokenizer = AutoTokenizer.from_pretrained('bigscience/bloom')
 
-BASE_MODEL = "bigscience/bloom-1b1"
+BASE_MODEL = "bigscience/bloom-560m"
 
 LORA_WEIGHTS = "./BLOOM-alpaca/"
 
@@ -82,9 +82,9 @@ if torch.__version__ >= "2":
 def evaluate(
     instruction,
     input=None,
-    temperature=0.1,
-    top_p=0.75,
-    top_k=40,
+    temperature=0,
+#     top_p=0.75,
+#     top_k=1,
     num_beams=4,
     max_new_tokens=128,
     **kwargs,
@@ -94,8 +94,8 @@ def evaluate(
     input_ids = inputs["input_ids"].to(device)
     generation_config = GenerationConfig(
         temperature=temperature,
-        top_p=top_p,
-        top_k=top_k,
+#         top_p=top_p,
+#         top_k=top_k,
         num_beams=num_beams,
         **kwargs,
     )
@@ -142,18 +142,38 @@ def evaluate(
 
 if __name__ == "__main__":
     # testing code for readme
-    for instruction in [
-        "Tell me about alpacas.",
-        "Tell me about the president of Mexico in 2019.",
-        "Tell me about the king of France in 2019.",
-        "List all Canadian provinces in alphabetical order.",
-        "Write a Python program that prints the first 10 Fibonacci numbers.",
-        "Write a program that prints the numbers from 1 to 100. But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",
-        "Tell me five words that rhyme with 'shock'.",
-        "Translate the sentence 'I have no mouth but I must scream' into Spanish.",
-        "Count up from 1 to 500.",
-    ]:
-        print("Instruction:", instruction)
-        print("Response:", evaluate(instruction))
-        print()
+#     for instruction in [
+#         "Tell me about alpacas.",
+#         "Tell me about the president of Mexico in 2019.",
+#         "Tell me about the king of France in 2019.",
+#         "List all Canadian provinces in alphabetical order.",
+#         "Write a Python program that prints the first 10 Fibonacci numbers.",
+#         "Write a program that prints the numbers from 1 to 100. But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",
+#         "Tell me five words that rhyme with 'shock'.",
+#         "Translate the sentence 'I have no mouth but I must scream' into Spanish.",
+#         "Count up from 1 to 500.",
+#     ]:
+    instruction='Using the given text, create a summary.'
+    answers = []
+    with open('./data/preliminary_test.csv','r',encoding='utf-8') as lines:
+        for line in lines:
+            data = line.strip().split(',')
+            input_str = data[1]
+            idx = data[0]
+            res = evaluate(instruction,input_str)
+            
+            if int(idx)%50==0:
+                print('process '+str(idx))
+            answers.append(str(idx)+','+res+'\n')
+    writer = open('./data/test_result_bloom.txt','a+',encoding='utf-8')
+    for ans in answers:
+        writer.write(ans)
+    writer.close()
+               
+                
+            
+            
+#     print("Instruction:", instruction)
+#     print("Response:", evaluate(instruction))
+#     print()
 
