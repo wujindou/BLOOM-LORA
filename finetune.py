@@ -23,7 +23,7 @@ from peft import (
 
 # optimized for RTX 3090 and A100. for larger GPUs, increase some of these?
 MICRO_BATCH_SIZE = 4  # this could actually be 5 but i like powers of 2
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
 EPOCHS = 1  # we don't always need 3 tbh
 LEARNING_RATE = 3e-4  # the Karpathy constant
@@ -185,7 +185,7 @@ trainer = transformers.Trainer(
         evaluation_strategy="steps",
         save_strategy="steps",
         eval_steps=100,
-        save_steps=100,
+        save_steps=150,
         output_dir="BLOOM-alpaca",
         save_total_limit=3,
         load_best_model_at_end=True,
@@ -203,7 +203,7 @@ model.state_dict = (
 if torch.__version__ >= "2":
     model = torch.compile(model)
 
-trainer.train(resume_from_checkpoint = False) #if resume, choose True, else False
+trainer.train(resume_from_checkpoint = True) #if resume, choose True, else False
 
 model.save_pretrained("BLOOM-alpaca")
 
