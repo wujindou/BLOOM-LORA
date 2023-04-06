@@ -203,7 +203,7 @@ model.state_dict = (
 if torch.__version__ >= "2":
     model = torch.compile(model)
 
-trainer.train(resume_from_checkpoint = True) #if resume, choose True, else False
+trainer.train(resume_from_checkpoint = False) #if resume, choose True, else False
 
 model.save_pretrained("BLOOM-alpaca")
 
