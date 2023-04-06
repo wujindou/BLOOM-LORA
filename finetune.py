@@ -23,7 +23,7 @@ from peft import (
 
 
 # optimized for RTX 3090 and A100. for larger GPUs, increase some of these?
-MICRO_BATCH_SIZE = 2  # this could actually be 5 but i like powers of 2
+MICRO_BATCH_SIZE = 1  # this could actually be 5 but i like powers of 2
 BATCH_SIZE = 16
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
 EPOCHS = 1  # we don't always need 3 tbh
@@ -32,7 +32,7 @@ CUTOFF_LEN = 512  # 256 accounts for about 96% of the data
 LORA_R = 8
 LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
-VAL_SET_SIZE = 1000
+VAL_SET_SIZE = 100
 TARGET_MODULES = [
     "query_key_value"
 #     "q_proj",
@@ -188,7 +188,7 @@ trainer = transformers.Trainer(
         eval_steps=50,
         save_steps=100,
         output_dir="BLOOM-alpaca",
-        save_total_limit=2,
+        save_total_limit=1,
         report_to="tensorboard",
         load_best_model_at_end=True,
         eval_accumulation_steps=1
