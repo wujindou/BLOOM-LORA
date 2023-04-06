@@ -37,7 +37,7 @@ TARGET_MODULES = [
 #     "q_proj",
 #     "v_proj",
 ]
-DATA_PATH = "data/kesai_data.json"
+DATA_PATH = "./data/kesai_data.json"
 
 model_name = "bigscience/bloom-560m"
 # model_name = "bigscience/bloom-1b1"
@@ -65,7 +65,7 @@ config = LoraConfig(
 )
 model = get_peft_model(model, config)
 tokenizer.pad_token_id = 0  # unk. we want this to be different from the eos token
-data = load_dataset("json", data_files=DATA_PATH)
+data = load_dataset("json", data_files=DATA_PATH, field="train")
 
 train_val = data["train"].train_test_split(
     test_size=VAL_SET_SIZE, shuffle=True, seed=42
