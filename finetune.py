@@ -1,5 +1,6 @@
 import os
-
+import os
+os.environ["WANDB_DISABLED"] = "true"
 import torch
 import torch.nn as nn
 import bitsandbytes as bnb
@@ -188,6 +189,7 @@ trainer = transformers.Trainer(
         save_steps=1000,
         output_dir="BLOOM-alpaca",
         save_total_limit=3,
+        report_to="tensorboard",
         load_best_model_at_end=True,
 #         ddp_find_unused_parameters=False if ddp else None,
     ),
