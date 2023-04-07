@@ -26,7 +26,7 @@ from peft import (
 MICRO_BATCH_SIZE = 1  # this could actually be 5 but i like powers of 2
 BATCH_SIZE = 16
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
-EPOCHS = 1  # we don't always need 3 tbh
+EPOCHS = 3  # we don't always need 3 tbh
 LEARNING_RATE = 3e-4  # the Karpathy constant
 CUTOFF_LEN = 386  # 256 accounts for about 96% of the data
 LORA_R = 8
