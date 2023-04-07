@@ -161,9 +161,9 @@ if __name__ == "__main__":
             input_str = data[1]
             idx = data[0]
             res = evaluate(instruction,input_str)
-            
-            if int(idx)%50==0:
-                print('process '+str(idx))
+            print(str(idx)+','+res)
+#             if int(idx)%50==0:
+#                 print('process '+str(idx))
             answers.append(str(idx)+','+res+'\n')
     writer = open('./data/test_result_bloom.txt','a+',encoding='utf-8')
     for ans in answers:
