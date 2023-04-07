@@ -164,7 +164,7 @@ if __name__ == "__main__":
             print(str(idx)+','+res)
 #             if int(idx)%50==0:
 #                 print('process '+str(idx))
-            answers.append(str(idx)+','+res+'\n')
+            answers.append(str(idx)+','+res.replace('\n','')+'\n')
     writer = open('./data/test_result_bloom.txt','a+',encoding='utf-8')
     for ans in answers:
         writer.write(ans)
